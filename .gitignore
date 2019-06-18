@@ -16,6 +16,9 @@ build/
 *.h5
 *.npy
 
+#Ignore ndjson files
+*.ndjson
+
 
 #.idea
 .idea/

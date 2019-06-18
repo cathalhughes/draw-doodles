@@ -13,8 +13,22 @@ app = Flask(__name__)
 app.secret_key = "MY_SECRET_KEY"
 CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
 
+import ndjson
+import random
+
+# load from file-like objects
+with open('rainbow.ndjson') as f:
+    data = ndjson.load(f)
+print(type(data))
+
 @app.route('/')
 def index():
     return render_template("index.html")
+
+@app.route('/rainbow')
+def rainbow():
+    index = random.randint(0, len(data) - 1)
+    print(data[index])
+    return jsonify(data[index])
 
 app.run(host='localhost', port=5000) #ssl_context=ctx ,threaded=True, debug=True)
