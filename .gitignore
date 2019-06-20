@@ -36,5 +36,5 @@ build/
 *.zip
 
 node_modules/
-
+env/
 
